@@ -4,7 +4,7 @@ Personal portfolio website for **Parshant Balwaria**, a GIS Software Engineer wi
 
 ## 🚀 Live Demo
 
-[View Portfolio](https://parshantbalwaria129.github.io/portfolio/)
+[View Portfolio](https://parshant-balwaria.github.io/portfolio/)
 
 ## 🛠️ Built With
 
@@ -67,6 +67,6 @@ MIT License — see [LICENSE](LICENSE) for details.
 
 **Parshant Balwaria**
 
-- GitHub: [@Parshantbalwaria129](https://github.com/Parshantbalwaria129)
+- GitHub: [parshant-balwaria](https://github.com/parshant-balwaria)
 - LinkedIn: [parshant-balwaria-b930a21b9](https://www.linkedin.com/in/parshant-balwaria-b930a21b9/)
 - Email: parshantbalwaria@gmail.com
