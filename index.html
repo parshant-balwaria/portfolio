@@ -531,7 +531,7 @@
     }
     .timeline-desc {
         color: var(--text-2); font-size: 0.9rem; line-height: 1.7;
-        max-width: 640px;
+        max-width: 640px; list-style: none; padding-left: 0;
         transition: color 0.4s;
     }
     /* Holographic year tags floating beside timeline */
@@ -663,6 +663,7 @@
     .pv-4 { background: linear-gradient(135deg, #0F172A, #2E1065, #A78BFA); }
     .pv-5 { background: linear-gradient(135deg, #0F172A, #312E81, #818CF8); }
     .pv-6 { background: linear-gradient(135deg, #0F172A, #134E4A, #2DD4BF); }
+    .pv-7 { background: linear-gradient(135deg, #0F172A, #14402C, #4ADE80, #FCD34D); }
     .project-visual i {
         font-size: 2.2rem;
         color: rgba(255,255,255,0.15);
@@ -700,6 +701,10 @@
         transition: color 0.3s;
     }
     .project:hover .project-name { color: var(--accent); }
+    .project-association {
+        font-size: 0.75rem; color: var(--accent); opacity: 0.8;
+        margin-top: 0.2rem; margin-bottom: 0.5rem;
+    }
     .project-desc {
         color: var(--text-2); font-size: 0.82rem;
         line-height: 1.7; margin-bottom: 1rem;
@@ -2160,8 +2165,8 @@
                         <span class="hero-stat-label">Enterprise<br>Companies</span>
                     </div>
                     <div class="hero-stat">
-                        <span class="hero-stat-val">1</span>
-                        <span class="hero-stat-label">Flagship<br>Platform</span>
+                        <span class="hero-stat-val">2</span>
+                        <span class="hero-stat-label">Platforms<br>Built</span>
                     </div>
                 </div>
             </div>
@@ -2258,7 +2263,10 @@
                     <div class="timeline-date">Oct 2025 — Present</div>
                     <div class="timeline-role">Assistant Digital Product Engineer</div>
                     <div class="timeline-company">Ramboll</div>
-                    <p class="timeline-desc">Rapidly embedded into Ramboll's digital delivery team to prototype cloud-ready GIS experiences. Automating data flows between ArcGIS, PostGIS, and Python so infrastructure stakeholders receive reliable spatial insights within existing product ecosystems.</p>
+                    <ul class="timeline-desc">
+                        <li>Led core full-stack development of a renewable energy investment decision platform, combining GIS suitability analysis, infrastructure routing, and financial modeling (NPV, LCOE, CAPEX/OPEX) into a single web application — enabling data-driven site screening and investment reporting for wind and solar projects.</li>
+                        <li>Contributing to full-stack development of a district energy economic screening platform, building modules across GIS-based spatial analysis, infrastructure cost modelling (LCOE, CAPEX/OPEX), and thermal network aggregation — supporting investment-grade feasibility assessment for large-scale heating and cooling projects.</li>
+                    </ul>
                 </div>
 
                 <div class="timeline-item reveal">
@@ -2288,6 +2296,14 @@
                     <div class="timeline-company">MapMyIndia &middot; Internship</div>
                     <p class="timeline-desc">Contributed to map data QA workflows using Python and spatial SQL, creating prototype automation scripts that reduced manual editing time and informed the roadmap for production tools.</p>
                 </div>
+
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2019 — 2023</div>
+                    <div class="timeline-role">B.Tech — Computer Science &amp; Engineering</div>
+                    <div class="timeline-company">UIET, Kurukshetra University</div>
+                    <p class="timeline-desc">Undergraduate degree in Computer Science &amp; Engineering. Built a strong foundation in software development, data structures, algorithms, and systems programming.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -2304,6 +2320,30 @@
             </div>
 
             <div class="projects-grid">
+                <div class="project featured reveal tilt-card">
+                    <div class="tilt-shine"></div>
+                    <div class="project-visual">
+                        <div class="project-visual-bg pv-7"></div>
+                        <span class="project-category cat-gis">Full-Stack Platform</span>
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-name">Renewable Energy Investment Platform</div>
+                        <div class="project-association">Associated with Ramboll &middot; Nov 2025 – Apr 2026</div>
+                        <p class="project-desc">Full-stack geospatial investment platform for screening, modeling, and evaluating wind, solar, and Power-to-X (PtX) project sites at Ramboll. Covers GIS suitability analysis, multi-technology financial modeling (LCOF/LCOE, NPV, CAPEX/OPEX), infrastructure routing, and automated investment reporting — with Azure SSO and enterprise RBAC. PtX engine models green hydrogen, e-methanol, e-ammonia, e-methane, and SAF across electrolyzer technologies (PEMEC, SOEC, AEC).</p>
+                        <div class="tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">FastAPI</span>
+                            <span class="tag">PostgreSQL</span>
+                            <span class="tag">PostGIS</span>
+                            <span class="tag">React</span>
+                            <span class="tag">TypeScript</span>
+                            <span class="tag">Azure</span>
+                            <span class="tag">Power-to-X</span>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="project reveal tilt-card">
                     <div class="tilt-shine"></div>
                     <div class="project-visual">
@@ -2313,6 +2353,7 @@
                     </div>
                     <div class="project-body">
                         <div class="project-name">Enterprise Spatial Data Platform</div>
+                        <div class="project-association">Associated with MapMyIndia &middot; Jun 2024 – Sep 2025</div>
                         <p class="project-desc">Confidential data-management backbone powering routing, geocoding, and analytics services for a national-scale location intelligence provider.</p>
                         <div class="tags">
                             <span class="tag">PostGIS</span>
@@ -2326,48 +2367,13 @@
                 <div class="project reveal tilt-card">
                     <div class="tilt-shine"></div>
                     <div class="project-visual">
-                        <div class="project-visual-bg pv-1"></div>
-                        <span class="project-category cat-fullstack">Full Stack</span>
-                        <i class="fa-solid fa-film"></i>
-                    </div>
-                    <div class="project-body">
-                        <div class="project-name">Video Subtitle Platform</div>
-                        <p class="project-desc">Full-stack platform for multilingual subtitles with live editing, project history, and secure token-based workflows.</p>
-                        <div class="tags">
-                            <span class="tag">Django</span>
-                            <span class="tag">Vue.js 3</span>
-                            <span class="tag">MySQL</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project reveal tilt-card">
-                    <div class="tilt-shine"></div>
-                    <div class="project-visual">
-                        <div class="project-visual-bg pv-2"></div>
-                        <span class="project-category cat-api">API Service</span>
-                        <i class="fa-solid fa-phone"></i>
-                    </div>
-                    <div class="project-body">
-                        <div class="project-name">Caller API</div>
-                        <p class="project-desc">Token-secured API service for global phone metadata with audit trails, rate limiting, and admin dashboards.</p>
-                        <div class="tags">
-                            <span class="tag">Django REST</span>
-                            <span class="tag">JWT</span>
-                            <span class="tag">PostgreSQL</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project reveal tilt-card">
-                    <div class="tilt-shine"></div>
-                    <div class="project-visual">
                         <div class="project-visual-bg pv-3"></div>
                         <span class="project-category cat-gis">GIS Tooling</span>
                         <i class="fa-solid fa-puzzle-piece"></i>
                     </div>
                     <div class="project-body">
                         <div class="project-name">QGIS Plugin Toolkit</div>
+                        <div class="project-association">Associated with MapMyIndia &middot; Jan 2024 – Sep 2025</div>
                         <p class="project-desc">Suite of QGIS plugins automating cartography tasks, enforcing data standards, and accelerating map production.</p>
                         <div class="tags">
                             <span class="tag">PyQGIS</span>
@@ -2386,6 +2392,7 @@
                     </div>
                     <div class="project-body">
                         <div class="project-name">Offline MQTT Messaging</div>
+                        <div class="project-association">Associated with MapMyIndia &middot; Jun 2024 – Sep 2025</div>
                         <p class="project-desc">Lightweight MQTT-based workflow keeping remote GIS operators synced in low-connectivity environments.</p>
                         <div class="tags">
                             <span class="tag">MQTT</span>
@@ -2848,7 +2855,7 @@
             <div class="contact-wrap reveal">
                 <div class="section-label" style="justify-content:center;"><i class="fa-solid fa-paper-plane"></i> Contact</div>
                 <h2 class="section-title" style="text-align:center;">Let's build something together</h2>
-                <p class="section-desc" style="text-align:center; margin: 0.5rem auto 0;">Available for freelance GIS projects, spatial analysis, and custom development.</p>
+                <p class="section-desc" style="text-align:center; margin: 0.5rem auto 0;">Open to contributing to meaningful projects in geospatial, energy, and infrastructure.</p>
 
                 <div class="contact-links">
                     <a href="mailto:parshantbalwaria@gmail.com" class="c-link">
@@ -2874,7 +2881,7 @@
     <!-- ============ FOOTER ============ -->
     <footer>
         <div class="container footer">
-            <span>&copy; 2025 Parshant Balwaria &middot; GIS Software Engineer</span>
+            <span>&copy; 2026 Parshant Balwaria &middot; GIS Software Engineer</span>
             <div class="footer-socials">
                 <a href="https://github.com/parshant-balwaria" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
                 <a href="https://www.linkedin.com/in/parshant-balwaria-b930a21b9/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
