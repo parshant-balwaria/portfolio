@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Parshant Balwaria</title>
+    <meta name="description" content="Parshant Balwaria - GIS Software Engineer at Ramboll">
+    <meta name="theme-color" content="#080d1c">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='14' fill='%2306b6d4' opacity='.85'/><circle cx='16' cy='16' r='4' fill='white'/></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{--bg:#080d1c;--s:#0f1726;--s2:#151f32;--b:rgba(6,182,212,0.12);--a:#06b6d4;--a2:#3b82f6;--t1:#f1f5f9;--t2:#94a3b8;--t3:#475569}
+        html,body{height:100%}
+        body{font-family:'Sora',system-ui,sans-serif;background:var(--bg);color:var(--t2);display:flex;align-items:center;justify-content:center;padding:16px;-webkit-font-smoothing:antialiased}
+        a{color:inherit;text-decoration:none}
+
+        /* === Business Card === */
+        .bcard{
+            width:100%;max-width:420px;
+            aspect-ratio:1.75/1;
+            background:linear-gradient(145deg, var(--s) 0%, var(--s2) 100%);
+            border:1px solid var(--b);
+            border-radius:16px;
+            padding:clamp(24px,5vw,36px);
+            display:flex;flex-direction:column;justify-content:space-between;
+            position:relative;overflow:hidden;
+            box-shadow:0 20px 60px rgba(0,0,0,0.5),0 1px 0 rgba(255,255,255,0.03) inset;
+        }
+        .bcard::before{
+            content:'';position:absolute;top:0;left:0;right:0;height:2px;
+            background:linear-gradient(90deg,var(--a),var(--a2),var(--a));
+        }
+        .bcard::after{
+            content:'';position:absolute;bottom:-60px;right:-60px;
+            width:200px;height:200px;border-radius:50%;
+            background:radial-gradient(circle,rgba(6,182,212,0.06),transparent 70%);
+            pointer-events:none;
+        }
+
+        /* Top section */
+        .bcard-top{display:flex;align-items:flex-start;gap:16px}
+        .bcard-logo{
+            width:44px;height:44px;border-radius:12px;flex-shrink:0;
+            background:linear-gradient(135deg,var(--a),var(--a2));
+            display:flex;align-items:center;justify-content:center;
+            font-size:0.85rem;font-weight:700;color:var(--bg);
+        }
+        .bcard-name{font-size:clamp(1.1rem,3.5vw,1.35rem);font-weight:700;color:var(--t1);letter-spacing:-0.02em;line-height:1.2}
+        .bcard-role{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--a);margin-top:3px}
+        .bcard-org{font-size:0.72rem;color:var(--t3);margin-top:1px}
+
+        /* Bottom section */
+        .bcard-bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:16px}
+        .bcard-info{display:flex;flex-direction:column;gap:6px}
+        .bcard-row{display:flex;align-items:center;gap:8px;font-size:0.68rem;color:var(--t3)}
+        .bcard-row svg{color:var(--a);flex-shrink:0;opacity:0.7}
+        .bcard-row a{transition:color 0.2s}
+        .bcard-row a:hover{color:var(--a)}
+        .bcard-socials{display:flex;gap:6px;flex-shrink:0}
+        .bcard-soc{
+            width:32px;height:32px;border-radius:8px;
+            border:1px solid rgba(255,255,255,0.06);
+            display:flex;align-items:center;justify-content:center;
+            color:var(--t3);transition:all 0.2s;
+        }
+        .bcard-soc:hover{border-color:var(--a);color:var(--a)}
+
+        /* Action buttons below card */
+        .card-actions{display:flex;gap:8px;margin-top:16px}
+        .ca-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:12px;border-radius:10px;border:1px solid var(--b);background:var(--s);color:var(--t2);font-family:'Sora',sans-serif;font-size:0.78rem;font-weight:500;cursor:pointer;transition:all 0.2s}
+        .ca-btn:hover{border-color:var(--a);color:var(--a)}
+        .ca-btn:active{transform:scale(0.97)}
+        .ca-btn svg{flex-shrink:0}
+
+        /* Portfolio link below card */
+        .below-card{text-align:center;margin-top:16px}
+        .port{font-size:0.72rem;color:var(--t3);transition:color 0.2s}
+        .port:hover{color:var(--a)}
+        .port b{color:var(--a);font-weight:500}
+
+        /* === FAB Menu === */
+        .fab-wrap{position:fixed;bottom:24px;right:24px;z-index:50}
+        .fab{
+            width:48px;height:48px;border-radius:14px;
+            border:1px solid var(--b);background:var(--s);
+            color:var(--t2);display:flex;align-items:center;justify-content:center;
+            cursor:pointer;transition:all 0.25s;
+            box-shadow:0 4px 20px rgba(0,0,0,0.4);
+        }
+        .fab:hover{border-color:var(--a);color:var(--a)}
+        .fab.open{border-color:var(--a);color:var(--a);transform:rotate(45deg)}
+        .fab-menu{
+            position:absolute;bottom:58px;right:0;
+            display:flex;flex-direction:column;gap:8px;
+            opacity:0;pointer-events:none;transform:translateY(8px);
+            transition:all 0.25s cubic-bezier(0.16,1,0.3,1);
+        }
+        .fab-menu.show{opacity:1;pointer-events:auto;transform:translateY(0)}
+        .fab-item{
+            display:flex;align-items:center;gap:8px;
+            padding:10px 16px;border-radius:10px;
+            border:1px solid var(--b);background:var(--s);
+            color:var(--t2);font-size:0.75rem;font-weight:500;
+            cursor:pointer;white-space:nowrap;transition:all 0.2s;
+            box-shadow:0 4px 16px rgba(0,0,0,0.3);
+        }
+        .fab-item:hover{border-color:var(--a);color:var(--a)}
+        .fab-item:active{transform:scale(0.97)}
+        .fab-item svg{flex-shrink:0}
+
+        /* Toast */
+        .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--s);border:1px solid var(--a);color:var(--t1);padding:10px 20px;border-radius:10px;font-size:0.78rem;font-weight:500;transition:transform 0.3s cubic-bezier(0.16,1,0.3,1);z-index:200;pointer-events:none}
+        .toast.show{transform:translateX(-50%) translateY(0)}
+
+        /* Small screens - let card scroll if needed */
+        @media(max-width:440px){
+            .bcard{aspect-ratio:auto;min-height:220px;padding:20px}
+            .bcard-name{font-size:1.05rem}
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Business Card -->
+    <div>
+        <div class="bcard" id="cardEl">
+            <div class="bcard-top">
+                <div class="bcard-logo">PB</div>
+                <div>
+                    <div class="bcard-name">Parshant Balwaria</div>
+                    <div class="bcard-role">GIS Software Engineer</div>
+                    <div class="bcard-org">Ramboll - Gurugram, India</div>
+                </div>
+            </div>
+            <div class="bcard-bottom">
+                <div class="bcard-info">
+                    <div class="bcard-row">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        <a href="mailto:pnnnt@ramboll.com">pnnnt@ramboll.com</a>
+                    </div>
+                    <div class="bcard-row">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        <a href="mailto:parshantbalwaria@gmail.com">parshantbalwaria@gmail.com</a>
+                    </div>
+                    <div class="bcard-row">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                        <a href="index.html">parshant.co.in</a>
+                    </div>
+                </div>
+                <div class="bcard-socials">
+                    <a href="https://www.linkedin.com/in/parshant-balwaria-b930a21b9/" target="_blank" rel="noopener" class="bcard-soc" aria-label="LinkedIn">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                    </a>
+                    <a href="https://github.com/parshant-balwaria" target="_blank" rel="noopener" class="bcard-soc" aria-label="GitHub">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                    </a>
+                    <a href="https://x.com/Parshant20000" target="_blank" rel="noopener" class="bcard-soc" aria-label="X">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4l11.73 16h4.27l-11.73-16z"/><path d="M4 20l6.77-6.77m2.46-2.46L20 4"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- Action buttons below card -->
+        <div class="card-actions">
+            <a href="save.html" class="ca-btn">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                Save
+            </a>
+            <button class="ca-btn" id="shareBtn">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                Share
+            </button>
+            <button class="ca-btn" id="copyBtn">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                Copy
+            </button>
+        </div>
+
+        <div class="below-card">
+            <a href="index.html" class="port">View full portfolio <b>&rarr;</b></a>
+        </div>
+    </div>
+
+    <!-- FAB Menu (download only) -->
+    <div class="fab-wrap">
+        <div class="fab-menu" id="fabMenu">
+            <a href="qr.html" class="fab-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="8" height="8" rx="1"/><rect x="14" y="2" width="8" height="8" rx="1"/><rect x="2" y="14" width="8" height="8" rx="1"/><rect x="14" y="14" width="4" height="4"/></svg>
+                QR Code
+            </a>
+            <button class="fab-item" id="dlPng">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download Card
+            </button>
+        </div>
+        <button class="fab" id="fabBtn" aria-label="Options">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">Link copied</div>
+
+    <script>
+    (function(){
+        var CARD_URL = 'https://www.parshant.co.in/';
+
+        // FAB toggle
+        var fabBtn = document.getElementById('fabBtn');
+        var fabMenu = document.getElementById('fabMenu');
+        fabBtn.addEventListener('click', function(){
+            fabBtn.classList.toggle('open');
+            fabMenu.classList.toggle('show');
+        });
+
+        // Share
+        document.getElementById('shareBtn').addEventListener('click', function(){
+            if(navigator.share) navigator.share({title:'Parshant Balwaria',text:'GIS Software Engineer at Ramboll',url:CARD_URL});
+            else copyLink();
+        });
+
+        // Copy
+        document.getElementById('copyBtn').addEventListener('click', copyLink);
+        function copyLink(){
+            navigator.clipboard.writeText(CARD_URL).then(function(){
+                var t=document.getElementById('toast');
+                t.classList.add('show');
+                setTimeout(function(){t.classList.remove('show');},2000);
+            });
+        }
+
+        // === Download front + back PNG ===
+        var CW=1050, CH=600, PAD=36, RAD=24;
+
+        function roundRect(ctx,x,y,w,h,r){
+            ctx.beginPath();ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);ctx.quadraticCurveTo(x+w,y,x+w,y+r);
+            ctx.lineTo(x+w,y+h-r);ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+            ctx.lineTo(x+r,y+h);ctx.quadraticCurveTo(x,y+h,x,y+h-r);
+            ctx.lineTo(x,y+r);ctx.quadraticCurveTo(x,y,x+r,y);ctx.closePath();
+        }
+        function cardBg(ctx){
+            var g=ctx.createLinearGradient(0,0,CW,CH);
+            g.addColorStop(0,'#0f1726');g.addColorStop(1,'#151f32');
+            ctx.fillStyle=g;roundRect(ctx,0,0,CW,CH,RAD);ctx.fill();
+            ctx.save();roundRect(ctx,0,0,CW,CH,RAD);ctx.clip();
+            var ag=ctx.createLinearGradient(0,0,CW,0);
+            ag.addColorStop(0,'#06b6d4');ag.addColorStop(0.5,'#3b82f6');ag.addColorStop(1,'#06b6d4');
+            ctx.fillStyle=ag;ctx.fillRect(0,0,CW,3);ctx.restore();
+            ctx.strokeStyle='rgba(6,182,212,0.15)';ctx.lineWidth=1;roundRect(ctx,0,0,CW,CH,RAD);ctx.stroke();
+        }
+
+        function drawFront(ctx){
+            cardBg(ctx);
+            // Subtle glow bottom-right
+            var rg=ctx.createRadialGradient(CW-100,CH-50,0,CW-100,CH-50,250);
+            rg.addColorStop(0,'rgba(6,182,212,0.06)');rg.addColorStop(1,'transparent');
+            ctx.fillStyle=rg;ctx.fillRect(0,0,CW,CH);
+
+            // Logo top-left
+            var topY=PAD+20;
+            var lg=ctx.createLinearGradient(PAD,topY,PAD+98,topY+98);
+            lg.addColorStop(0,'#06b6d4');lg.addColorStop(1,'#3b82f6');
+            ctx.fillStyle=lg;roundRect(ctx,PAD,topY,98,98,22);ctx.fill();
+            ctx.fillStyle='#080d1c';ctx.font='bold 40px Sora,sans-serif';
+            ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('PB',PAD+49,topY+50);
+
+            // Name + role + company beside logo
+            ctx.textAlign='left';
+            ctx.fillStyle='#f1f5f9';ctx.font='bold 47px Sora,sans-serif';
+            ctx.fillText('Parshant Balwaria',PAD+118,topY+34);
+            ctx.fillStyle='#06b6d4';ctx.font='500 22px JetBrains Mono,monospace';
+            ctx.fillText('GIS Software Engineer',PAD+118,topY+66);
+            ctx.fillStyle='#64748b';ctx.font='400 21px Sora,sans-serif';
+            ctx.fillText('Ramboll - Gurugram, India',PAD+118,topY+96);
+
+            // Bottom-left: emails with icon
+            var by=CH-PAD-10;
+            var iconX=PAD, textX=PAD+28;
+            ctx.fillStyle='#06b6d4';
+            // Email icon (envelope shape)
+            ctx.strokeStyle='#06b6d4';ctx.lineWidth=1.5;
+            ctx.beginPath();ctx.rect(iconX,by-39,18,13);ctx.stroke();
+            ctx.beginPath();ctx.moveTo(iconX,by-39);ctx.lineTo(iconX+9,by-30);ctx.lineTo(iconX+18,by-39);ctx.stroke();
+
+            ctx.fillStyle='#94a3b8';ctx.font='400 20px Sora,sans-serif';
+            ctx.textAlign='left';
+            ctx.fillText('pnnnt@ramboll.com',textX,by-32);
+
+            // Second email icon
+            ctx.strokeStyle='#06b6d4';
+            ctx.beginPath();ctx.rect(iconX,by-11,18,13);ctx.stroke();
+            ctx.beginPath();ctx.moveTo(iconX,by-11);ctx.lineTo(iconX+9,by-2);ctx.lineTo(iconX+18,by-11);ctx.stroke();
+
+            ctx.fillStyle='#94a3b8';ctx.font='400 20px Sora,sans-serif';
+            ctx.fillText('parshantbalwaria@gmail.com',textX,by-4);
+
+            // Bottom-right: website with globe icon
+            ctx.textAlign='right';
+            var siteW=ctx.measureText('parshant.co.in').width;
+            var globeX=CW-PAD-siteW-28;
+            ctx.strokeStyle='#06b6d4';ctx.lineWidth=1.5;
+            ctx.beginPath();ctx.arc(globeX+9,by-5,9,0,Math.PI*2);ctx.stroke();
+            ctx.beginPath();ctx.moveTo(globeX,by-5);ctx.lineTo(globeX+18,by-5);ctx.stroke();
+            ctx.beginPath();ctx.ellipse(globeX+9,by-5,5,9,0,0,Math.PI*2);ctx.stroke();
+
+            ctx.fillStyle='#94a3b8';ctx.font='400 20px Sora,sans-serif';
+            ctx.fillText('parshant.co.in',CW-PAD,by-4);
+        }
+
+        function drawBack(ctx){
+            cardBg(ctx);
+            var qsz=240,qx=(CW-qsz)/2,qy=(CH-qsz)/2-24;
+            roundRect(ctx,qx-18,qy-18,qsz+36,qsz+36,16);ctx.fillStyle='#fff';ctx.fill();
+            var qr=makeQRM('https://www.parshant.co.in/'),m=qr.grid,msz=qr.size,cs=qsz/msz;
+            for(var r=0;r<msz;r++)for(var c=0;c<msz;c++){
+                if(!m[r][c])continue;
+                var isF=(r<8&&c<8)||(r<8&&c>=msz-8)||(r>=msz-8&&c<8);
+                if(isF)continue;
+                var t=(r+c)/(msz*2);
+                ctx.fillStyle='rgb('+Math.round(6+(59-6)*t)+','+Math.round(182+(130-182)*t)+','+Math.round(212+(246-212)*t)+')';
+                ctx.beginPath();ctx.arc(qx+c*cs+cs/2,qy+r*cs+cs/2,cs*0.38,0,Math.PI*2);ctx.fill();
+            }
+            function dfp(fx,fy){ctx.strokeStyle='#06b6d4';ctx.lineWidth=cs*0.85;roundRect(ctx,fx+cs*0.5,fy+cs*0.5,cs*6,cs*6,cs*1.1);ctx.stroke();ctx.fillStyle='#06b6d4';roundRect(ctx,fx+cs*2,fy+cs*2,cs*3,cs*3,cs*0.5);ctx.fill();}
+            dfp(qx,qy);dfp(qx+(msz-7)*cs,qy);dfp(qx,qy+(msz-7)*cs);
+            ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(qx+qsz/2,qy+qsz/2,cs*2.5,0,Math.PI*2);ctx.fill();
+            ctx.fillStyle='#080d1c';ctx.beginPath();ctx.arc(qx+qsz/2,qy+qsz/2,cs*2.3,0,Math.PI*2);ctx.fill();
+            ctx.fillStyle='#06b6d4';ctx.font='bold '+(cs*2)+'px Sora,sans-serif';
+            ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('PB',qx+qsz/2,qy+qsz/2+1);
+            ctx.fillStyle='#94a3b8';ctx.font='500 14px Sora,sans-serif';ctx.fillText('Scan to connect',CW/2,qy+qsz+40);
+            ctx.fillStyle='#475569';ctx.font='400 12px JetBrains Mono,monospace';ctx.fillText('parshant.co.in',CW/2,qy+qsz+62);
+        }
+
+        // Proper QR encoder with Reed-Solomon error correction
+        var GF=(function(){var e=new Uint8Array(256),l=new Uint8Array(256),v=1;for(var i=0;i<256;i++){e[i]=v;l[v]=i;v<<=1;if(v>=256)v^=0x11d;}return{mul:function(a,b){return a===0||b===0?0:e[(l[a]+l[b])%255];},exp:e,log:l};})();
+        function rsEnc(data,ecLen){var g=[1];for(var i=0;i<ecLen;i++){var n=new Array(g.length+1).fill(0);for(var j=0;j<g.length;j++){n[j]^=g[j];n[j+1]^=GF.mul(g[j],GF.exp[i]);}g=n;}var m=new Uint8Array(data.length+ecLen);m.set(data);for(var i=0;i<data.length;i++){var c=m[i];if(c!==0)for(var j=0;j<g.length;j++)m[i+j]^=GF.mul(g[j],c);}return m.slice(data.length);}
+        var QR_EC=[null,{total:26,data:16,ec:10,blocks:1},{total:44,data:28,ec:16,blocks:1},{total:70,data:44,ec:26,blocks:1},{total:100,data:64,ec:36,blocks:2},{total:134,data:86,ec:48,blocks:2},{total:172,data:108,ec:64,blocks:2},{total:196,data:124,ec:72,blocks:4},{total:242,data:154,ec:88,blocks:4},{total:292,data:182,ec:110,blocks:4},{total:346,data:216,ec:130,blocks:4}];
+        function makeQRM(text){
+            var bytes=[];for(var i=0;i<text.length;i++){var c=text.charCodeAt(i);if(c<128)bytes.push(c);else if(c<2048){bytes.push(192|(c>>6));bytes.push(128|(c&63));}else{bytes.push(224|(c>>12));bytes.push(128|((c>>6)&63));bytes.push(128|(c&63));}}
+            var ver=1;for(ver=1;ver<=10;ver++)if(QR_EC[ver].data>=bytes.length+3)break;if(ver>10)ver=10;
+            var info=QR_EC[ver],sz=17+ver*4;
+            var dBits=[];function pb(v,l){for(var i=l-1;i>=0;i--)dBits.push((v>>i)&1);}
+            pb(4,4);pb(bytes.length,ver<=9?8:16);for(var i=0;i<bytes.length;i++)pb(bytes[i],8);
+            pb(0,Math.min(4,info.data*8-dBits.length));while(dBits.length%8!==0)dBits.push(0);
+            var pad=[0xEC,0x11],pi=0;while(dBits.length<info.data*8){pb(pad[pi],8);pi^=1;}
+            var dBytes=new Uint8Array(info.data);for(var i=0;i<info.data;i++){var b=0;for(var j=0;j<8;j++)b=(b<<1)|dBits[i*8+j];dBytes[i]=b;}
+            var ecPB=info.ec/info.blocks,dPB=Math.floor(info.data/info.blocks),rem=info.data%info.blocks,aD=[],aE=[],off=0;
+            for(var b=0;b<info.blocks;b++){var bL=dPB+(b>=info.blocks-rem?1:0);var bl=dBytes.slice(off,off+bL);off+=bL;aD.push(bl);aE.push(rsEnc(bl,ecPB));}
+            var il=[];var mD=dPB+(rem>0?1:0);for(var i=0;i<mD;i++)for(var b=0;b<info.blocks;b++)if(i<aD[b].length)il.push(aD[b][i]);
+            for(var i=0;i<ecPB;i++)for(var b=0;b<info.blocks;b++)il.push(aE[b][i]);
+            var bits=[];for(var i=0;i<il.length;i++)for(var j=7;j>=0;j--)bits.push((il[i]>>j)&1);
+            var grid=[],res=[];for(var r=0;r<sz;r++){grid[r]=[];res[r]=[];for(var c=0;c<sz;c++){grid[r][c]=-1;res[r][c]=false;}}
+            function sF(row,col){for(var r=-1;r<=7;r++)for(var c=-1;c<=7;c++){var rr=row+r,cc=col+c;if(rr<0||rr>=sz||cc<0||cc>=sz)continue;var on=(r>=0&&r<=6&&(c===0||c===6))||(c>=0&&c<=6&&(r===0||r===6))||(r>=2&&r<=4&&c>=2&&c<=4);grid[rr][cc]=on?1:0;res[rr][cc]=true;}}
+            sF(0,0);sF(0,sz-7);sF(sz-7,0);
+            for(var i=0;i<sz;i++){if(!res[6][i]){grid[6][i]=i%2===0?1:0;res[6][i]=true;}if(!res[i][6]){grid[i][6]=i%2===0?1:0;res[i][6]=true;}}
+            for(var i=0;i<8;i++){res[8][i]=true;res[i][8]=true;res[8][sz-1-i]=true;res[sz-1-i][8]=true;}
+            res[8][8]=true;grid[sz-8][8]=1;res[sz-8][8]=true;
+            if(ver>=2){var ap=[6,sz-7];for(var ai=0;ai<ap.length;ai++)for(var aj=0;aj<ap.length;aj++){var ar=ap[ai],ac=ap[aj];if(res[ar][ac])continue;for(var r=-2;r<=2;r++)for(var c=-2;c<=2;c++){var on=Math.abs(r)===2||Math.abs(c)===2||(r===0&&c===0);grid[ar+r][ac+c]=on?1:0;res[ar+r][ac+c]=true;}}}
+            var bi=0;for(var col=sz-1;col>=1;col-=2){if(col===6)col=5;for(var cnt=0;cnt<sz;cnt++){var row=((Math.floor((sz-1-col)/2))%2===0)?sz-1-cnt:cnt;for(var dc=0;dc<2;dc++){var c=col-dc;if(c<0||c>=sz)continue;if(res[row][c])continue;grid[row][c]=bi<bits.length?bits[bi]:0;bi++;}}}
+            var bM=0,bP=Infinity;for(var mask=0;mask<8;mask++){var t=[];for(var r=0;r<sz;r++){t[r]=[];for(var c=0;c<sz;c++){if(res[r][c])t[r][c]=grid[r][c];else{var m=false;switch(mask){case 0:m=(r+c)%2===0;break;case 1:m=r%2===0;break;case 2:m=c%3===0;break;case 3:m=(r+c)%3===0;break;case 4:m=(Math.floor(r/2)+Math.floor(c/3))%2===0;break;case 5:m=(r*c)%2+(r*c)%3===0;break;case 6:m=((r*c)%2+(r*c)%3)%2===0;break;case 7:m=((r+c)%2+(r*c)%3)%2===0;break;}t[r][c]=grid[r][c]^(m?1:0);}}}var pen=0;for(var r=0;r<sz;r++){var cn=1;for(var c=1;c<sz;c++){if(t[r][c]===t[r][c-1])cn++;else{if(cn>=5)pen+=cn-2;cn=1;}}if(cn>=5)pen+=cn-2;}for(var c=0;c<sz;c++){var cn=1;for(var r=1;r<sz;r++){if(t[r][c]===t[r-1][c])cn++;else{if(cn>=5)pen+=cn-2;cn=1;}}if(cn>=5)pen+=cn-2;}if(pen<bP){bP=pen;bM=mask;}}
+            for(var r=0;r<sz;r++)for(var c=0;c<sz;c++){if(!res[r][c]){var m=false;switch(bM){case 0:m=(r+c)%2===0;break;case 1:m=r%2===0;break;case 2:m=c%3===0;break;case 3:m=(r+c)%3===0;break;case 4:m=(Math.floor(r/2)+Math.floor(c/3))%2===0;break;case 5:m=(r*c)%2+(r*c)%3===0;break;case 6:m=((r*c)%2+(r*c)%3)%2===0;break;case 7:m=((r+c)%2+(r*c)%3)%2===0;break;}grid[r][c]^=m?1:0;}}
+            var fB=[1,0,0];fB.push((bM>>2)&1,(bM>>1)&1,bM&1);var fmt=0;for(var i=0;i<6;i++)fmt=(fmt<<1)|fB[i];var fV=fmt<<10;var gn=0x537;for(var i=14;i>=10;i--)if((fV>>(i))&1)fV^=gn<<(i-10);fV=(fmt<<10)|fV;fV^=0x5412;
+            for(var i=0;i<15;i++){var bit=(fV>>(14-i))&1;if(i<6)grid[8][i]=bit;else if(i===6)grid[8][7]=bit;else if(i===7)grid[8][8]=bit;else grid[8][sz-15+i]=bit;if(i<6)grid[sz-1-i][8]=bit;else if(i===6)grid[8-i+6][8]=bit;else if(i===7)grid[8-i+6][8]=bit;else grid[14-i][8]=bit;}
+            return {grid:grid,size:sz};
+        }
+
+        document.getElementById('dlPng').addEventListener('click', function(){
+            var fc=document.createElement('canvas');fc.width=CW;fc.height=CH;
+            drawFront(fc.getContext('2d'));
+            fc.toBlob(function(fb){
+                dlB(fb,'Parshant_Card_Front.png');
+                var bc=document.createElement('canvas');bc.width=CW;bc.height=CH;
+                drawBack(bc.getContext('2d'));
+                bc.toBlob(function(bb){dlB(bb,'Parshant_Card_Back.png');},'image/png');
+            },'image/png');
+        });
+
+        function dlB(b,n){var u=URL.createObjectURL(b);var a=document.createElement('a');a.href=u;a.download=n;document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(u);}
+    })();
+    </script>
+</body>
+</html>

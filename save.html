@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Save Contact - Parshant Balwaria</title>
+    <meta name="theme-color" content="#080d1c">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='14' fill='%2306b6d4' opacity='.85'/><circle cx='16' cy='16' r='4' fill='white'/></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'Sora',system-ui,sans-serif;background:#080d1c;color:#94a3b8;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;-webkit-font-smoothing:antialiased}
+        .wrap{text-align:center;max-width:320px}
+        .check{width:64px;height:64px;border-radius:50%;background:rgba(6,182,212,0.1);border:2px solid rgba(6,182,212,0.3);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;color:#06b6d4}
+        h1{font-size:1.1rem;font-weight:700;color:#f1f5f9;margin-bottom:6px}
+        p{font-size:0.82rem;color:#475569;margin-bottom:24px;line-height:1.5}
+        .retry{display:inline-flex;align-items:center;gap:6px;padding:10px 22px;border-radius:10px;border:1px solid rgba(6,182,212,0.1);background:#111a2e;color:#94a3b8;font-family:'Sora',sans-serif;font-size:0.78rem;font-weight:500;cursor:pointer;transition:all 0.2s;margin-bottom:16px}
+        .retry:hover{border-color:#06b6d4;color:#06b6d4}
+        .back{display:block;font-size:0.72rem;color:#475569;text-decoration:none;transition:color 0.2s}
+        .back:hover{color:#06b6d4}
+        .back span{color:#06b6d4}
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="check">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h1>Contact Downloading</h1>
+        <p>Parshant Balwaria's contact card (.vcf) should download automatically. Open it to add to your contacts.</p>
+        <button class="retry" id="retryBtn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download Again
+        </button>
+        <a href="card.html" class="back"><span>&larr;</span> Back to card</a>
+    </div>
+    <script>
+    function downloadVCF(){
+        var vc = 'BEGIN:VCARD\r\nVERSION:3.0\r\n' +
+            'N:Balwaria;Parshant;;;\r\n' +
+            'FN:Parshant Balwaria\r\n' +
+            'TITLE:GIS Software Engineer\r\n' +
+            'ORG:Ramboll\r\n' +
+            'EMAIL;TYPE=WORK:parshantbalwaria@gmail.com\r\n' +
+            'URL:https://github.com/parshant-balwaria\r\n' +
+            'URL:https://www.linkedin.com/in/parshant-balwaria-b930a21b9/\r\n' +
+            'X-SOCIALPROFILE;TYPE=twitter:https://x.com/Parshant20000\r\n' +
+            'X-SOCIALPROFILE;TYPE=threads:https://www.threads.com/@parshantbalwaria\r\n' +
+            'NOTE:GIS Software Engineer - Python\\, PostGIS\\, React\\, FastAPI\\, QGIS\\, Docker\\, Azure. Building enterprise spatial platforms at Ramboll.\r\n' +
+            'END:VCARD';
+        var b = new Blob([vc], {type:'text/vcard;charset=utf-8'});
+        var u = URL.createObjectURL(b);
+        var a = document.createElement('a');
+        a.href = u; a.download = 'Parshant_Balwaria.vcf';
+        document.body.appendChild(a); a.click();
+        document.body.removeChild(a); URL.revokeObjectURL(u);
+    }
+    downloadVCF();
+    document.getElementById('retryBtn').addEventListener('click', downloadVCF);
+    </script>
+</body>
+</html>

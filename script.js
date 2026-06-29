@@ -225,8 +225,8 @@
             ctx.beginPath(); ctx.arc(sx, sy, ds, 0, Math.PI * 2); ctx.fill();
         }
 
-        // New Delhi pin
-        var dlat = 28.6139, dlng = 77.209;
+        // Gurugram pin
+        var dlat = 28.4595, dlng = 77.0266;
         var dp = (90 - dlat) * Math.PI / 180, dt = dlng * Math.PI / 180;
         var dx = Math.sin(dp) * Math.cos(dt), dy = Math.cos(dp), dz = Math.sin(dp) * Math.sin(dt);
         var dx1 = dx * cosY - dz * sinY, dz1 = dx * sinY + dz * cosY;
