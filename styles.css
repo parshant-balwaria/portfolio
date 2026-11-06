@@ -250,6 +250,7 @@ button { border: none; background: none; cursor: pointer; color: inherit; font: 
 .proj-group:not(:first-child) { margin-top: 28px; }
 .proj-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 .proj-row-hero { grid-template-columns: 4fr 5fr; }
+.proj-row-3 { grid-template-columns: repeat(3, 1fr); }
 .proj-card {
     padding: 32px;
     border: 1px solid var(--border); border-radius: var(--radius);
@@ -280,6 +281,15 @@ button { border: none; background: none; cursor: pointer; color: inherit; font: 
 .proj-disclaimer { font-size: 0.68rem; line-height: 1.5; color: var(--text-3); margin-top: 10px; }
 .proj-disclaimer a { text-decoration: underline; }
 .proj-desc code { font-family: var(--font-mono); font-size: 0.92em; color: var(--text-1); }
+
+/* Highlighted "Agentic Coding" chip, in project cards and the skills list */
+.proj-stack span.chip-ai,
+.sg-chips span.chip-ai {
+    color: var(--accent);
+    border-color: rgba(6, 182, 212, 0.4);
+    background: var(--accent-dim);
+}
+.chip-ai::before { content: '\2726\00a0'; }
 
 /* Visible placeholder for facts still to be confirmed. Must be gone before deploy. */
 mark.todo {
@@ -412,6 +422,7 @@ mark.todo {
     .stat-divider { display: none; }
     .hero-stat { min-width: 120px; }
     .proj-row, .proj-row-hero { grid-template-columns: 1fr 1fr; }
+    .proj-row-3 { grid-template-columns: repeat(3, 1fr); }
     .cap-grid { grid-template-columns: repeat(2, 1fr); }
     .test-grid { grid-template-columns: 1fr; }
 }
@@ -437,6 +448,7 @@ mark.todo {
 
     /* Projects - compact cards */
     .proj-rows { gap: 12px; }
+    .proj-row-3 { grid-template-columns: 1fr; }
     .proj-row, .proj-row-hero { gap: 12px; }
     .proj-card { padding: 20px; border-radius: 10px; }
     .proj-name { font-size: 0.95rem; }

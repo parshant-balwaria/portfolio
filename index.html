@@ -127,6 +127,7 @@
                         <p class="exp-desc">Took over technical ownership of a renewable energy investment platform mid-project, after the lead engineer who set up the architecture left. Owned software decisions and client requirements end to end for wind, solar and Power-to-X site screening: GIS suitability analysis, infrastructure routing, financial modelling (NPV, LCOE/LCOF, CAPEX/OPEX) and automated investment reporting.</p>
                         <!-- Client name is confidential: keep it as "district energy" in public copy. -->
                         <p class="exp-desc">Contributed two modules to a district energy economic screening platform, delivered July 2026, and helped achieve a ~60&times; overall performance improvement on processing workflows, cutting single runs from ~48 hours to under an hour. Received a certificate of appreciation from Ramboll for the work.</p>
+                        <p class="exp-desc">Since Aug 2026, working with VU.CITY's data team on their core 3D digital city platform: built the platform's error, warning and success messaging module on AWS (Lambda, Terraform), Python and PostGIS, using an agentic coding workflow.</p>
                         <p class="exp-desc">Migrated geospatial pipelines from ArcGIS/ArcPy file geodatabases to GeoPandas/GeoPackage, and integrated ArcGIS Pro, Online and Enterprise with backend APIs and dashboards.</p>
                     </div>
                 </article>
@@ -220,12 +221,21 @@
                 </div>
                 <div class="proj-row">
                     <article class="proj-card" data-reveal>
+                        <span class="proj-tag">Cloud / Serverless</span>
+                        <h4 class="proj-name">VU.CITY - Platform Status Messaging</h4>
+                        <p class="proj-company">Ramboll for VU.CITY - Aug 2026 to present</p>
+                        <p class="proj-desc">Built the error, warning and success messaging module for VU.CITY's core 3D digital city platform, working with their data team. The platform's data covers mesh, raster, GeoJSON and Shapefile formats in PostGIS, and the module runs on AWS Lambda with infrastructure in Terraform. Built with an agentic coding workflow: I designed the module and reviewed and tested the output, while AI agents wrote much of the implementation.</p>
+                        <div class="proj-stack"><span>Python</span><span>AWS Lambda</span><span>Terraform</span><span>PostGIS</span><span>Mesh</span><span>Raster</span><span>GeoJSON</span><span>Shapefile</span><span class="chip-ai">Agentic Coding</span></div>
+                    </article>
+                    <article class="proj-card" data-reveal>
                         <span class="proj-tag">Performance</span>
                         <h4 class="proj-name">District Energy Screening - 60&times; Speed-up</h4>
                         <p class="proj-company">Ramboll - delivered Jul 2026</p>
                         <p class="proj-desc">Contributed two modules to a district energy economic screening platform, joining an international team about two years in. Helped achieve a ~60&times; overall performance improvement, cutting single processing runs from ~48 hours to under an hour, by removing a heavy ArcPy / file-geodatabase workflow, a single merged layer with hundreds of columns and millions of rows, and redundant loops and repeated calculations. Received a certificate of appreciation from Ramboll, signed by the Head of Digital Product Engineering and the Director of Business Area, Energy Denmark.</p>
-                        <div class="proj-stack"><span>Python</span><span>ArcPy</span><span>File GDB</span><span>Geoprocessing</span></div>
+                        <div class="proj-stack"><span>Python</span><span>ArcPy</span><span>File GDB</span><span>Geoprocessing</span><span class="chip-ai">Agentic Coding</span></div>
                     </article>
+                </div>
+                <div class="proj-row proj-row-3">
                     <article class="proj-card" data-reveal>
                         <span class="proj-tag">GIS Tooling</span>
                         <h4 class="proj-name">QGIS Plugin Toolkit</h4>
@@ -233,8 +243,6 @@
                         <p class="proj-desc">QGIS plugins that automate cartography tasks and enforce data standards in map production.</p>
                         <div class="proj-stack"><span>PyQGIS</span><span>Python</span><span>Automation</span></div>
                     </article>
-                </div>
-                <div class="proj-row">
                     <article class="proj-card" data-reveal>
                         <span class="proj-tag">Infrastructure</span>
                         <h4 class="proj-name">Offline MQTT Messaging</h4>
@@ -257,14 +265,14 @@
                         <span class="proj-tag">Production SaaS</span>
                         <h4 class="proj-name">NexClasses - Coaching Institute Platform</h4>
                         <p class="proj-desc">Production SaaS for a K-12 coaching centre. Turborepo monorepo with a Node/Express + Prisma API on PostgreSQL 16 and a React 18 + Vite frontend. JWT in an HTTP-only cookie with bcrypt and Admin/Teacher roles; teachers are scoped to their own batches. Covers the student lifecycle (enquiry &rarr; demo &rarr; active &rarr; alumni/dropped), batch scheduling with overlap detection, fee billing with overdue tracking, CSV reports, and 17+ admin pages including a full content CMS. Installable PWA with web push and an offline dashboard. GitHub Actions deploys over SSH to AWS EC2 (Docker Compose, Nginx, Let's Encrypt), monitored with Sentry, UptimeRobot and GA4, with automated rclone backups.</p>
-                        <div class="proj-stack"><span>React</span><span>Vite</span><span>Node.js</span><span>Express</span><span>Prisma</span><span>PostgreSQL</span><span>Tailwind</span><span>Docker</span><span>Nginx</span><span>AWS EC2</span><span>GitHub Actions</span><span>PWA</span></div>
+                        <div class="proj-stack"><span>React</span><span>Vite</span><span>Node.js</span><span>Express</span><span>Prisma</span><span>PostgreSQL</span><span>Tailwind</span><span>Docker</span><span>Nginx</span><span>AWS EC2</span><span>GitHub Actions</span><span>PWA</span><span class="chip-ai">Agentic Coding</span></div>
                         <a class="proj-link" href="https://nexclasses.site" target="_blank" rel="noopener">nexclasses.site &#8599;</a>
                     </article>
                     <article class="proj-card" data-reveal>
                         <span class="proj-tag">Offline-First</span>
                         <h4 class="proj-name">Notch - Self-Hosted Expense Tracker</h4>
                         <p class="proj-desc">Private, single-user expense tracker with two-tap logging from an iPhone PWA. Writes go to the device first (Dexie/IndexedDB) and confirm instantly, then sync to the server when the network allows. Daily <code>pg_dump</code> backups are AES-256 encrypted and pushed to Google Drive with tiered retention (2 local / 15 daily / 12 monthly), and setup automatically test-restores them into a scratch database. Tracks lending, borrowing and settling per person, and accounts by pay cycle: each period runs from one salary entry to the next, derived from the data rather than the calendar. Runs as four Docker services (db, api, nginx, certbot); only nginx is public.</p>
-                        <div class="proj-stack"><span>Python 3.12</span><span>FastAPI</span><span>PostgreSQL 16</span><span>TypeScript</span><span>Vite</span><span>Dexie</span><span>Docker</span><span>Nginx</span></div>
+                        <div class="proj-stack"><span>Python 3.12</span><span>FastAPI</span><span>PostgreSQL 16</span><span>TypeScript</span><span>Vite</span><span>Dexie</span><span>Docker</span><span>Nginx</span><span class="chip-ai">Agentic Coding</span></div>
                         <span class="proj-note">Private repo - walkthrough on request</span>
                     </article>
                 </div>
@@ -273,7 +281,7 @@
                         <span class="proj-tag">Simulation</span>
                         <h4 class="proj-name">Builder's Ledger - Upgrade Scheduler</h4>
                         <p class="proj-desc">Discrete scheduling simulation of three parallel queues (builders, laboratory, pet house) for a mobile strategy game. Upgrades are limited by daily income held back per resource and gated by prerequisites; nine sequencing strategies are compared, and the simulator reports which queue is the bottleneck. A data pipeline compiles an open dataset, handles two upstream data quirks, and packs 1,271 PNGs (~47&nbsp;MB) into a ~320&nbsp;KB WebP sprite pack inside a single self-contained page. An optional Node companion syncs live from the official API with the key kept server-side and auto-rotated for IP binding, and documents an investigation of all 32 API endpoints showing why building data can't be synced legitimately.</p>
-                        <div class="proj-stack"><span>Node.js</span><span>Scheduling</span><span>Data Pipeline</span><span>WebP</span></div>
+                        <div class="proj-stack"><span>Node.js</span><span>Scheduling</span><span>Data Pipeline</span><span>WebP</span><span class="chip-ai">Agentic Coding</span></div>
                         <span class="proj-note">Private repo - walkthrough on request</span>
                         <p class="proj-disclaimer">Fan project for Clash of Clans. This content is not affiliated with, endorsed, sponsored, or specifically approved by Supercell, and Supercell is not responsible for it. Supercell owns the game and its artwork. See <a href="https://supercell.com/en/fan-content-policy/" target="_blank" rel="noopener">Supercell's Fan Content Policy</a>.</p>
                     </article>
@@ -281,7 +289,7 @@
                         <span class="proj-tag">Observability</span>
                         <h4 class="proj-name">Home Server Monitor</h4>
                         <p class="proj-desc">Monitoring for a repurposed laptop that runs Immich, Builder's Ledger and other apps in Docker 24/7. One event-driven Python process uses about 0.2% CPU and under 100&nbsp;MB RAM (capped at 150&nbsp;MB by systemd): link changes, Docker events and mains/battery switches arrive as events, and only the per-line internet check and the heartbeat run on timers. It tracks two internet lines with failover, power and battery, smart-plug energy and cost, containers, apps, and HDD health via SMART, in SQLite with hourly rollups kept permanently. No open ports: the FastAPI dashboard listens on localhost and is reached through Cloudflare Tunnel behind Cloudflare Access, or Tailscale. A Cloudflare Worker emails when heartbeats stop, and events queued during an outage arrive with the first heartbeat afterwards, so the "back online" email can say what happened.</p>
-                        <div class="proj-stack"><span>Python 3.12</span><span>FastAPI</span><span>SQLite</span><span>systemd</span><span>Docker</span><span>Cloudflare Workers</span><span>D1</span><span>Tailscale</span></div>
+                        <div class="proj-stack"><span>Python 3.12</span><span>FastAPI</span><span>SQLite</span><span>systemd</span><span>Docker</span><span>Cloudflare Workers</span><span>D1</span><span>Tailscale</span><span class="chip-ai">Agentic Coding</span></div>
                         <span class="proj-note">Private repo - walkthrough on request</span>
                     </article>
                 </div>
@@ -347,7 +355,7 @@
                 </div>
                 <div class="skill-group" data-reveal>
                     <h3 class="sg-title">DevOps &amp; Cloud</h3>
-                    <div class="sg-chips"><span>Docker</span><span>Git / GitHub</span><span>CI/CD</span><span>Azure (Blob, VMs, AKS)</span><span>AWS EC2</span><span>GitLab CI</span><span>Nginx</span><span>Linux</span><span>GitHub Actions</span><span>Docker Compose</span><span>Bash Scripting</span><span>Gunicorn</span><span>VS Code</span><span>Postman</span><span>Jira</span></div>
+                    <div class="sg-chips"><span>Docker</span><span>Git / GitHub</span><span>CI/CD</span><span>Azure (Blob, VMs, AKS)</span><span>AWS (EC2, Lambda)</span><span>Terraform</span><span>GitLab CI</span><span class="chip-ai">Agentic Coding</span><span>Nginx</span><span>Linux</span><span>GitHub Actions</span><span>Docker Compose</span><span>Bash Scripting</span><span>Gunicorn</span><span>VS Code</span><span>Postman</span><span>Jira</span></div>
                 </div>
             </div>
         </div>
