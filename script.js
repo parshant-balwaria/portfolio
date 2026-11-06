@@ -14,14 +14,16 @@
 
     navToggle.addEventListener('click', function () {
         navToggle.classList.toggle('active');
-        mobileMenu.classList.toggle('active');
-        document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        var open = mobileMenu.classList.toggle('active');
+        navToggle.setAttribute('aria-expanded', open);
+        document.body.style.overflow = open ? 'hidden' : '';
     });
 
     mobileMenu.querySelectorAll('a').forEach(function (a) {
         a.addEventListener('click', function () {
             navToggle.classList.remove('active');
             mobileMenu.classList.remove('active');
+            navToggle.setAttribute('aria-expanded', 'false');
             document.body.style.overflow = '';
         });
     });
@@ -39,37 +41,44 @@
     }
 
     // --- Counter Animation ---
-    var cntObs = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-            if (!e.isIntersecting) return;
-            var el = e.target;
-            var target = parseFloat(el.dataset.count);
-            var isFloat = target % 1 !== 0;
-            var dur = 1400;
-            var start = performance.now();
-            function tick(now) {
-                var t = Math.min((now - start) / dur, 1);
-                var ease = 1 - Math.pow(1 - t, 3);
-                el.textContent = isFloat ? (target * ease).toFixed(1) : Math.round(target * ease);
-                if (t < 1) requestAnimationFrame(tick);
-            }
-            requestAnimationFrame(tick);
-            cntObs.unobserve(el);
+    // The HTML already holds the final value; this only animates 0 -> value when motion is allowed.
+    if (!reducedMotion) {
+        var cntObs = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+                if (!e.isIntersecting) return;
+                var el = e.target;
+                var target = parseFloat(el.dataset.count);
+                var isFloat = target % 1 !== 0;
+                var dur = 1400;
+                var start = performance.now();
+                function tick(now) {
+                    var t = Math.min((now - start) / dur, 1);
+                    var ease = 1 - Math.pow(1 - t, 3);
+                    el.textContent = isFloat ? (target * ease).toFixed(1) : Math.round(target * ease);
+                    if (t < 1) requestAnimationFrame(tick);
+                }
+                requestAnimationFrame(tick);
+                cntObs.unobserve(el);
+            });
+        }, { threshold: 0.5 });
+        document.querySelectorAll('[data-count]').forEach(function (el) {
+            el.textContent = '0';
+            cntObs.observe(el);
         });
-    }, { threshold: 0.5 });
-    document.querySelectorAll('[data-count]').forEach(function (el) { cntObs.observe(el); });
+    }
 
     // --- Typing Effect ---
+    // phrases[0] is pre-rendered in the HTML, so the loop starts by holding then deleting it.
     var tEl = document.getElementById('terminalText');
     if (tEl && !reducedMotion) {
         var phrases = [
-            'GIS Software Engineer',
-            'Full-Stack Developer',
-            'Spatial Data Engineer',
-            'QGIS Plugin Builder',
-            'Cloud GIS Architect'
+            'Full-Stack Software Engineer',
+            'Geospatial Systems',
+            'Python · FastAPI · PostGIS',
+            'React · TypeScript',
+            'QGIS Plugin Builder'
         ];
-        var pi = 0, ci = 0, deleting = false;
+        var pi = 0, ci = phrases[0].length, deleting = true;
         function typeLoop() {
             var cur = phrases[pi];
             if (deleting) {
@@ -82,9 +91,7 @@
                 setTimeout(typeLoop, 75 + Math.random() * 35);
             }
         }
-        setTimeout(typeLoop, 700);
-    } else if (tEl) {
-        tEl.textContent = 'GIS Software Engineer';
+        setTimeout(typeLoop, 2400);
     }
 
     // --- 3D Globe ---
