@@ -349,6 +349,13 @@ mark.todo {
 }
 .test-link:hover, .test-link:focus-visible { color: var(--accent-2); border-bottom-color: currentColor; }
 .test-card .test-link span { color: inherit; font-size: inherit; }
+.test-card--award { grid-column: 1 / -1; border-color: var(--border-hover); background: linear-gradient(135deg, var(--accent-dim), transparent 60%), var(--surface); }
+.test-card--award p { font-style: normal; color: var(--text-1); max-width: 760px; }
+.test-badge {
+    display: inline-block; margin-bottom: 14px; padding: 4px 12px;
+    font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.04em; text-transform: uppercase;
+    color: var(--accent); background: var(--accent-dim); border: 1px solid var(--border-hover); border-radius: var(--radius-pill);
+}
 
 /* --- Contact --- */
 .contact-section { padding-bottom: var(--gap); }
