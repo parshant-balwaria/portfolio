@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Parshant Balwaria - Resume</title>
+<!-- Source for Parshant_Resume.pdf. Rebuild with: node resume/build.js -->
+<style>
+    @page { size: A4; margin: 15mm 16mm 14mm; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+        font-family: "Times New Roman", "Liberation Serif", Tinos, serif;
+        font-size: 10.5pt; line-height: 1.32; color: #000; background: #fff;
+    }
+    a { color: inherit; text-decoration: none; }
+    header { text-align: center; margin-bottom: 8pt; }
+    h1 { font-size: 22pt; letter-spacing: 0.04em; line-height: 1.1; }
+    .tagline { font-size: 11pt; margin-top: 2pt; }
+    .contact { font-size: 9.5pt; margin-top: 4pt; }
+    .contact span + span::before { content: "  |  "; white-space: pre; }
+    h2 {
+        font-size: 12pt; text-transform: uppercase; letter-spacing: 0.03em;
+        border-bottom: 0.8pt solid #555; padding-bottom: 1.5pt; margin: 10pt 0 5pt;
+        break-after: avoid;
+    }
+    .role { margin-bottom: 7pt; break-inside: avoid-page; }
+    .role-head { display: flex; justify-content: space-between; gap: 12pt; font-weight: bold; }
+    .role-sub { display: flex; justify-content: space-between; gap: 12pt; font-style: italic; margin-bottom: 2pt; }
+    ul { padding-left: 14pt; }
+    li { margin-bottom: 2pt; text-align: justify; }
+    li b { font-weight: bold; }
+    .stack { font-style: italic; color: #333; }
+    .skills { display: grid; grid-template-columns: 92pt 1fr; column-gap: 6pt; row-gap: 2pt; }
+    .edu div { display: flex; justify-content: space-between; gap: 12pt; margin-bottom: 2pt; }
+    .edu div > span:last-child:not(:first-child), .role-head span:last-child { white-space: nowrap; }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>PARSHANT BALWARIA</h1>
+    <div class="tagline">Full-Stack Software Engineer &middot; Geospatial Systems</div>
+    <div class="contact">
+        <span>+91 9996948843</span>
+        <span><a href="mailto:parshantbalwaria@gmail.com">parshantbalwaria@gmail.com</a></span>
+        <span><a href="https://parshant-balwaria.github.io/portfolio">parshant-balwaria.github.io/portfolio</a></span>
+    </div>
+    <div class="contact">
+        <span><a href="https://www.linkedin.com/in/parshant-balwaria-b930a21b9/">linkedin.com/in/parshant-balwaria-b930a21b9</a></span>
+        <span><a href="https://github.com/parshant-balwaria">github.com/parshant-balwaria</a></span>
+    </div>
+</header>
+
+<h2>Summary</h2>
+<p>Full-stack software engineer with 3+ years at Ramboll and MapMyIndia, building Python/FastAPI and React/TypeScript systems on PostgreSQL/PostGIS, with geospatial systems as a specialty. Built 2 production platforms and deployed 10+ internal tools. Recent work includes real-time locking for a 500&nbsp;GB+ shared production map database, a ~60&times; speed-up on the NYSERDA TENs district energy platform, and a serverless AWS module for VU.CITY&rsquo;s 3D digital city platform.</p>
+
+<h2>Experience</h2>
+
+<div class="role">
+    <div class="role-head"><span>Ramboll &mdash; Assistant Digital Product Engineer III</span><span>Oct 2025 &ndash; Present</span></div>
+    <div class="role-sub"><span>Gurgaon, Haryana, India</span></div>
+    <ul>
+        <li><b>Renewable Energy Investment Platform:</b> took over technical ownership mid-project after the lead engineer left, owning software decisions and client requirements end to end. Wind, solar and Power-to-X site screening combining GIS suitability analysis, infrastructure routing, financial modelling (NPV, LCOE/LCOF, CAPEX/OPEX) and automated investment reporting, behind Azure SSO and enterprise RBAC. <span class="stack">Python, FastAPI, PostgreSQL/PostGIS, React, TypeScript, Azure.</span></li>
+        <li><b>NYSERDA TENs (district energy economic screening):</b> contributed two modules to an international project about two years into development, delivered July 2026. Helped achieve a ~60&times; overall performance improvement, cutting single processing runs from ~48 hours to under an hour, by removing a heavy ArcPy / file-geodatabase workflow and a single merged layer with hundreds of columns and millions of rows, and eliminating redundant loops and repeated calculations. The project team received a Ramboll certificate of appreciation.</li>
+        <li><b>VU.CITY platform status messaging (Aug 2026 &ndash; present):</b> built the error, warning and success messaging module for VU.CITY&rsquo;s core 3D digital city platform with their data team, over mesh, raster, GeoJSON and Shapefile data in PostGIS. Designed the module and reviewed and tested the output of an agentic coding workflow. <span class="stack">Python, AWS Lambda, Terraform, PostGIS.</span></li>
+        <li>Migrated geospatial pipelines from ArcGIS/ArcPy file geodatabases to GeoPandas/GeoPackage, and integrated ArcGIS Pro, Online and Enterprise with backend APIs and dashboards.</li>
+    </ul>
+</div>
+
+<div class="role">
+    <div class="role-head"><span>MapMyIndia (CE Info Systems) &mdash; Software Associate II &rarr; Software Engineer III</span><span>Nov 2023 &ndash; Sep 2025</span></div>
+    <div class="role-sub"><span>Okhla, New Delhi, India</span><span>Promoted Jan 2025</span></div>
+    <ul>
+        <li><b>Collaborative map editing and locking:</b> built real-time locking for a shared production PostGIS database holding 500&nbsp;GB+ of all-India map data, edited concurrently by 200+ editors. Each edit locks only the affected, adjacent and related features, replacing manual coordination of who could edit which area. <span class="stack">PostGIS, FastAPI, React, PyQGIS, CI/CD.</span></li>
+        <li>Led the move of production and testing teams from proprietary software to a centralized QGIS + PostgreSQL environment: a custom QGIS plugin to connect and manage layers, end-to-end logging, user-level security, and a FastAPI activity dashboard for user actions, system logs and security events.</li>
+        <li>Built an offline MQTT messaging service that keeps remote GIS operators in sync over poor connectivity, and a QGIS plugin toolkit that automates cartography tasks and enforces data standards.</li>
+        <li>Core developer on a MapStore + QGIS Server + PostGIS deployment, optimising rendering speed and security.</li>
+        <li>Set up internal infrastructure: a unified QGIS plugin repository, an offline PyPI server, Docker deployments, GitLab CI/CD and Sphinx documentation.</li>
+        <li>Received a second, unrequested increment about three months after promotion, for delivery quality.</li>
+    </ul>
+</div>
+
+<div class="role">
+    <div class="role-head"><span>MapMyIndia &mdash; Software Engineer Trainee (Internship)</span><span>Aug 2022 &ndash; Oct 2022</span></div>
+    <ul>
+        <li>Built QGIS plugins for filtering and updating map data.</li>
+    </ul>
+</div>
+
+<h2>Selected Personal Projects</h2>
+<ul>
+    <li><b>NexClasses</b> (<a href="https://nexclasses.site">nexclasses.site</a>): production SaaS for a K-12 coaching centre. Turborepo monorepo with a Node/Express + Prisma API on PostgreSQL 16 and a React 18 + Vite frontend; JWT auth with Admin/Teacher roles, student lifecycle, batch scheduling with overlap detection, fee billing and an installable PWA with web push. Deployed by GitHub Actions to AWS EC2 (Docker Compose, Nginx, Let&rsquo;s Encrypt), monitored with Sentry and UptimeRobot.</li>
+    <li><b>Notch:</b> self-hosted, offline-first expense tracker PWA. Writes go to IndexedDB (Dexie) first and sync later; daily AES-256 encrypted pg_dump backups with tiered retention and automated test restores. <span class="stack">FastAPI, PostgreSQL 16, TypeScript, Docker, Nginx.</span></li>
+    <li><b>Home Server Monitor:</b> event-driven Python monitor (~0.2% CPU, &lt;100&nbsp;MB RAM) for a 24/7 Docker home server, tracking dual internet lines, power, containers and disk health. No open ports: FastAPI dashboard behind Cloudflare Tunnel/Access, with a Cloudflare Worker for outage alerts.</li>
+</ul>
+
+<h2>Skills</h2>
+<div class="skills">
+    <b>Languages:</b><span>Python, TypeScript, JavaScript, SQL, HTML, CSS</span>
+    <b>Backend:</b><span>FastAPI, Django, Node.js / Express, Prisma, REST APIs, MQTT, JWT auth</span>
+    <b>Databases:</b><span>PostgreSQL + PostGIS, MySQL, SQLite</span>
+    <b>GIS:</b><span>QGIS / PyQGIS, QGIS Server, MapStore, ArcGIS Pro / Online / Enterprise, ArcPy, GeoPandas, Leaflet</span>
+    <b>Frontend:</b><span>React, Vite, Tailwind CSS, Bootstrap, PWA</span>
+    <b>Cloud &amp; DevOps:</b><span>Azure, AWS (Lambda, EC2), Terraform, Docker, Nginx, GitHub Actions, GitLab CI, Linux, Cloudflare</span>
+    <b>Practices:</b><span>Agentic coding, CI/CD, Sphinx documentation, Data structures &amp; algorithms</span>
+</div>
+
+<h2>Achievements</h2>
+<ul>
+    <li>Ramboll certificate of appreciation (2026) to the NYSERDA TENs Project Team for dedication, teamwork and perseverance.</li>
+    <li>Led Tech and Python initiatives at GirlScript for a year, running virtual Python classes and Hacktoberfest events.</li>
+    <li>Completed the 30-day Google Cloud program with certification.</li>
+</ul>
+
+<h2>Education</h2>
+<div class="edu">
+    <div><span><b>M.Tech, Computer Science &amp; Engineering (Distance)</b> &mdash; Maharshi Dayanand University, Rohtak</span><span>2025 &ndash; 2027 (pursuing)</span></div>
+    <div><span><b>B.Tech, Computer Science &amp; Engineering</b> &mdash; UIET, Kurukshetra University (CGPA 7.26)</span><span>2019 &ndash; 2023</span></div>
+    <div><span>XII (HBSE) &mdash; Nobel Dev Public School &nbsp;&middot;&nbsp; X (HBSE) &mdash; Govt. Sr. Sec. School</span></div>
+</div>
+
+</body>
+</html>
