@@ -27,6 +27,8 @@
     ul { padding-left: 14pt; }
     li { margin-bottom: 2pt; text-align: justify; }
     li b { font-weight: bold; }
+    .new-page { break-before: page; margin-top: 0; }
+    .projects li { break-inside: avoid; margin-bottom: 4pt; }
     .stack { font-style: italic; color: #333; }
     .skills { display: grid; grid-template-columns: 92pt 1fr; column-gap: 6pt; row-gap: 2pt; }
     .edu div { display: flex; justify-content: space-between; gap: 12pt; margin-bottom: 2pt; }
@@ -76,8 +78,8 @@
     </ul>
 </div>
 
-<h2>Selected Personal Projects</h2>
-<ul>
+<h2 class="new-page">Selected Personal Projects</h2>
+<ul class="projects">
     <li><b>NexClasses</b> &mdash; <a href="https://nexclasses.site">https://nexclasses.site</a>: production SaaS for a K-12 coaching centre. Turborepo monorepo with a Node/Express + Prisma API on PostgreSQL 16 and a React 18 + Vite frontend; JWT auth with Admin/Teacher roles, student lifecycle, batch scheduling with overlap detection, fee billing and an installable PWA with web push. Deployed by GitHub Actions to AWS EC2 (Docker Compose, Nginx, Let&rsquo;s Encrypt), monitored with Sentry and UptimeRobot.</li>
     <li><b>Builder&rsquo;s Ledger</b> &mdash; <a href="https://buildersledger.online/">https://buildersledger.online</a>: discrete scheduling simulation of three parallel upgrade queues for a mobile strategy game (fan project), comparing nine sequencing strategies under income and prerequisite limits and reporting the bottleneck queue. A data pipeline packs 1,271 PNGs (~47&nbsp;MB) into a ~320&nbsp;KB WebP sprite pack inside a single self-contained page. <span class="stack">Node.js, data pipeline, WebP.</span></li>
     <li><b>Notch:</b> self-hosted, offline-first expense tracker PWA. Writes go to IndexedDB (Dexie) first and sync later; daily AES-256 encrypted pg_dump backups with tiered retention and automated test restores. <span class="stack">FastAPI, PostgreSQL 16, TypeScript, Docker, Nginx.</span></li>
